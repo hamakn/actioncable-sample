@@ -1,0 +1,23 @@
+%h1 Listing room_users
+
+%table
+  %thead
+    %tr
+      %th RoomId
+      %th UserId
+      %th
+      %th
+      %th
+
+  %tbody
+    - @room_users.each do |room_user|
+      %tr
+        %td= room_user.room_id
+        %td= room_user.user_id
+        %td= link_to 'Show', room_user
+        %td= link_to 'Edit', edit_room_user_path(room_user)
+        %td= link_to 'Destroy', room_user, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Room user', new_room_user_path

@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :room, through: :room_users
   has_many :lounge_messages
   has_many :room_messages
 

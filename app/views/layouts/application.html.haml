@@ -16,5 +16,10 @@
               %a{ href: "/" }
                 %span channel:
                 %label#channel-status.label.label-info No Connection
+            - if @user
+              %li
+                %a{ href: "/" }
+                  %span
+                    = "user_id: #{@user.id}"
     .container
       != yield
