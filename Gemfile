@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'rails', '~> 5.0.0'
-gem 'sqlite3'
 gem 'puma', '~> 3.0'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -13,9 +12,12 @@ gem 'jbuilder', '~> 2.5'
 gem 'faml'
 gem 'haml-rails'
 
+gem 'pg'
+
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'pry'
+  gem 'sqlite3'
 end
 
 group :development do
