@@ -9,7 +9,7 @@ $(document).ready ->
 $(document).on "keypress", "form#form-room-message", (e) ->
   if e.which == 13 # enter
     input = $("input#input-message")
-    if input.val() != "" && App.room && App.room.is_connected() && App.room.is_followed()
+    if input.val() != "" && App.room && App.room.is_connected()
       name_input = $("input#input-name")
       App.room.post_message { body: input.val(), name: name_input.val() }, room_id
       input.val ""
