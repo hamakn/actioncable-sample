@@ -1,5 +1,6 @@
 class RoomsController < ApplicationController
   before_action :set_room, only: [:show, :edit, :update, :destroy]
+  before_action :set_or_create_user
 
   # GET /rooms
   # GET /rooms.json
@@ -10,6 +11,7 @@ class RoomsController < ApplicationController
   # GET /rooms/1
   # GET /rooms/1.json
   def show
+    @room_messages = @room.room_messages.includes(:user).order("id desc")
   end
 
   # GET /rooms/new

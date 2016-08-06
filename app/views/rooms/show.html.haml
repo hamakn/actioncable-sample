@@ -1,9 +1,24 @@
-%p#notice= notice
+#subscribe-to-room-channel{ room_id: @room.id }
 
-%p
-  %b Name:
-  = @room.name
-
-= link_to 'Edit', edit_room_path(@room)
-\|
-= link_to 'Back', rooms_path
+%h1
+  = "Room id: #{@room.id}"
+%form#form-room-message.form-horizontal
+  .form-group
+    %label.col-sm-2.control-label{ for: "input-name" } Name
+    .col-sm-4
+      %input#input-name.form-control{ type: "text", value: @user.name || "名無しさん" }
+  .form-group
+    %label.col-sm-2.control-label{ for: "input-message" } Message
+    .col-sm-10
+      %input#input-message.form-control{ type: "text", autofocus: true }
+%hr
+#messages
+  - @room_messages.each do |message|
+    .row
+      .col-sm-2
+        = message.created_at_to_s
+      .col-sm-1
+        %span.bold
+          = message.user.name
+      .col-sm-9
+        = message.body
