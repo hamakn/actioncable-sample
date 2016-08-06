@@ -13,6 +13,7 @@ gem 'faml'
 gem 'haml-rails'
 
 gem 'pg'
+gem 'redis'
 
 group :development, :test do
   gem 'byebug', platform: :mri
