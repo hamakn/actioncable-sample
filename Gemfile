@@ -15,6 +15,7 @@ gem 'haml-rails'
 
 group :development, :test do
   gem 'byebug', platform: :mri
+  gem 'pry'
 end
 
 group :development do
