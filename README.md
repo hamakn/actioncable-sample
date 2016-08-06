@@ -1,24 +1,18 @@
-# README
+ActionCable Sample
+==================
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+![demo image](https://dl.dropboxusercontent.com/u/5804539/2016-08-07_actioncable_sample.png)
 
-Things you may want to cover:
+Sample1
+-------
 
-* Ruby version
+* http://hamakn-actioncable-sample.herokuapp.com/
+* Simple chat
 
-* System dependencies
+Sample2
+-------
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* http://hamakn-actioncable-sample.herokuapp.com/rooms/1
+* Default, connection will be rejected by action cable server.
+* After creating RoomUser record, connection will be accepted.
+  * Scaffold http://hamakn-actioncable-sample.herokuapp.com/room_users may help you.
