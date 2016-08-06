@@ -1,2 +1,14 @@
-%h1
-  hi
+#subscribe-to-lounge-channel
+
+%h1 Lounge
+%form#form-message.form-horizontal
+  .form-group
+    %label.col-sm-2.control-label{ for: "input-name" } Name
+    .col-sm-4
+      %input#input-name.form-control{ type: "text", value: "名無しさん" }
+  .form-group
+    %label.col-sm-2.control-label{ for: "input-message" } Message
+    .col-sm-10
+      %input#input-message.form-control{ type: "text", autofocus: true }
+%hr
+#messages

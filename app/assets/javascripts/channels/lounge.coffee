@@ -1,12 +1,39 @@
-App.lounge = App.cable.subscriptions.create "LoungeChannel",
-  connected: ->
-    # Called when the subscription is ready for use on the server
+connected = false
 
-  disconnected: ->
-    # Called when the subscription has been terminated by the server
+App.subscribe_to_lounge_channel = ->
+  App.lounge = App.cable.subscriptions.create "LoungeChannel",
+    connected: ->
+      connected = true
+      label = $("label#channel-status")
+      return unless label
+      label.removeClass()
+      label.addClass "label"
+      label.addClass "label-success"
+      label.text "Connected"
 
-  received: (data) ->
-    # Called when there's incoming data on the websocket for this channel
+    disconnected: ->
+      connected = false
+      label = $("label#channel-status")
+      return unless label
+      label.removeClass()
+      label.addClass "label"
+      label.addClass "label-danger"
+      label.text "Disconnected"
 
-  speak: ->
-    @perform 'speak'
+    is_connected: ->
+      connected
+
+    received: (data) ->
+      console.log data
+      div = $("div#messages")
+      return unless div
+      div.prepend(
+        $("<div>", { class: "row" }).append(
+          $("<div>", { class: "col-sm-2" }).text("2016-08-06 14:10:00") # TODO
+        ).append(
+          $("<div>", { class: "col-sm-2" }).text(data["message"]["body"])
+        )
+      )
+
+    post_message: (message) ->
+      @perform "post_message", message: message
