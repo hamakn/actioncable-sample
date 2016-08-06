@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160806083004) do
+ActiveRecord::Schema.define(version: 20160806091204) do
 
   create_table "lounge_messages", force: :cascade do |t|
     t.integer  "user_id"
@@ -19,6 +19,17 @@ ActiveRecord::Schema.define(version: 20160806083004) do
     t.datetime "updated_at", null: false
     t.index ["created_at"], name: "index_lounge_messages_on_created_at"
     t.index ["user_id"], name: "index_lounge_messages_on_user_id"
+  end
+
+  create_table "room_messages", force: :cascade do |t|
+    t.integer  "room_id"
+    t.integer  "user_id"
+    t.string   "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["created_at"], name: "index_room_messages_on_created_at"
+    t.index ["room_id"], name: "index_room_messages_on_room_id"
+    t.index ["user_id"], name: "index_room_messages_on_user_id"
   end
 
   create_table "rooms", force: :cascade do |t|
