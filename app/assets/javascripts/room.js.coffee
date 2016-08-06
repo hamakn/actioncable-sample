@@ -2,7 +2,6 @@ room_id = null
 
 $(document).ready ->
   div = $("div#subscribe-to-room-channel")
-  console.log div
   if div.length > 0
     room_id = $(div).attr("room_id")
     App.subscribe_to_room_channel room_id

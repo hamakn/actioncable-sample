@@ -1,8 +1,15 @@
 class RoomChannel < ApplicationCable::Channel
-  def follow(data)
-    # TODO: auth
+  def subscribed
     stop_all_streams
-    stream_from "room_channel:#{data["room_id"]}"
+    room_user = RoomUser.find_by(
+      room_id: params["room_id"],
+      user_id: connection.current_user.id
+    )
+    if room_user
+      stream_from "room_channel:#{params["room_id"]}"
+    else
+      reject
+    end
   end
 
   def post_message(data)

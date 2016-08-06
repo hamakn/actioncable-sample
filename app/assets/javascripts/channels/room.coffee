@@ -1,12 +1,10 @@
 connected = false
-followed = false
 
 App.subscribe_to_room_channel = (room_id) ->
-  App.room = App.cable.subscriptions.create "RoomChannel",
+  App.room = App.cable.subscriptions.create { channel: "RoomChannel", room_id: room_id },
     # TODO: DRY
     connected: ->
       connected = true
-      @follow room_id
       label = $("label#channel-status")
       return unless label
       label.removeClass()
@@ -35,9 +33,6 @@ App.subscribe_to_room_channel = (room_id) ->
     is_connected: ->
       connected
 
-    is_followed: ->
-      followed
-
     received: (data) ->
       console.log data
       div = $("div#messages")
@@ -53,10 +48,6 @@ App.subscribe_to_room_channel = (room_id) ->
           $("<div>", { class: "col-sm-9" }).text(data["message"]["body"])
         )
       )
-
-    follow: (room_id) ->
-      @perform "follow", room_id: room_id
-      followed = true
 
     post_message: (message, room_id) ->
       @perform "post_message", message: message, room_id: room_id
