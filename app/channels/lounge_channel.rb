@@ -9,6 +9,10 @@ class LoungeChannel < ApplicationCable::Channel
   end
 
   def post_message(data)
-    ActionCable.server.broadcast "lounge_channel", message: data["message"]
+    connection.current_user.update_name data["message"]["name"]
+    message = connection.current_user.lounge_messages.create(
+      body: data["message"]["body"]
+    )
+    ActionCable.server.broadcast "lounge_channel", message: message.to_h
   end
 end

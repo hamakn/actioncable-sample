@@ -29,9 +29,13 @@ App.subscribe_to_lounge_channel = ->
       return unless div
       div.prepend(
         $("<div>", { class: "row" }).append(
-          $("<div>", { class: "col-sm-2" }).text("2016-08-06 14:10:00") # TODO
+          $("<div>", { class: "col-sm-2" }).text(data["message"]["created_at"])
         ).append(
-          $("<div>", { class: "col-sm-2" }).text(data["message"]["body"])
+          $("<div>", { class: "col-sm-1" }).append(
+            $("<span>", { class: "bold" }).text(data["message"]["user_name"])
+          )
+        ).append(
+          $("<div>", { class: "col-sm-9" }).text(data["message"]["body"])
         )
       )
 
